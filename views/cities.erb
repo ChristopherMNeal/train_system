@@ -1,0 +1,12 @@
+<h2>List of All Cities</h2>
+<% if @cities.any? %>
+<ul>
+  <% @cities.each do |city| %>
+    <li><% city.name %><span style="margin-right:2rem;">
+    <a href="/cities/<%= city.id %>"><%= city.station_name %></a>
+    </li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are currently no cities to display.</p>
+<% end %>
