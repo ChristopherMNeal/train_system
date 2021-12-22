@@ -1,0 +1,6 @@
+<% if @city %>
+<h4>City Name: <%= @city.name %></h4>
+<h4>Station Name: <%= @city.station_name %></h4>
+<% end %>
+
+<p><a href="/cities/<%= @city.id %>/edit">Edit/Delete station</a></p>

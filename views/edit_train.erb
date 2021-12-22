@@ -1,0 +1,13 @@
+<h3>Edit <%= @train.name %></h3>
+
+<form method="post" action="/trains/<%= @train.id %>">
+<input name="_method" type="hidden" value="patch">
+<label for="train_name">Name</label>
+<input class="form-control" name="train_name" value="<%= @train.name %>">
+<button class="btn">Update</button>
+</form>
+
+<form method="post" action="/trains/<%= @train.id %>">
+<input name="_method" type="hidden" value="delete">
+<button class="btn">Delete</button>
+</form>

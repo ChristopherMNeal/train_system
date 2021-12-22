@@ -40,7 +40,8 @@ class Train
   end
 
   def update(attributes)
-    
+    @name = attributes.fetch(:name)
+    DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = #{@id};")
   end
   
   def add_stop(attributes)
