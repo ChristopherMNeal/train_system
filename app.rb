@@ -27,6 +27,22 @@ get('/trains/new') do
 end
 
 post('/trains') do
-  name = params[:]
+  name = params[:train_name]
+  train = Train.new({:name => "#{name}", :id => nil})
+  train.save
+  @trains = Train.all
+  erb(:trains)
+end
 
+get('/cities/new') do
+  erb(:new_city)
+end
+
+post('/cities') do
+  name = params[:city_name]
+  station = params[:station_name]
+  city = City.new({:name => name, :station_name => station, :id => nil})
+  city.save
+  @cities = City.all
+  erb(:cities)
 end

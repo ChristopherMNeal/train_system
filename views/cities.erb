@@ -2,7 +2,7 @@
 <% if @cities.any? %>
 <ul>
   <% @cities.each do |city| %>
-    <li><% city.name %><span style="margin-right:2rem;">
+    <li><%= city.name %>
     <a href="/cities/<%= city.id %>"><%= city.station_name %></a>
     </li>
   <% end %>
@@ -10,3 +10,5 @@
 <% else %>
 <p>There are currently no cities to display.</p>
 <% end %>
+<a href="/cities/new">Add a New City</a><br>
+<a href="/index">Home</a>
