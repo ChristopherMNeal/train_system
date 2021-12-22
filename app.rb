@@ -6,6 +6,8 @@ require('pry')
 also_reload('lib/**/*.rb')
 require 'pg'
 
+
+
 DB = PG.connect({:dbname => "train_system"})
 
 get('/') do
@@ -72,7 +74,10 @@ delete('/cities/:id') do
 end
 
 get('/trains/:id') do
+  @trains = Train.all
+  @cities = City.all
   @train = Train.find(params[:id].to_i)
+  @stops = @train.stops
   erb(:train)
 end
 
@@ -91,4 +96,14 @@ delete('/trains/:id') do
   @train = Train.find(params[:id].to_i)
   @train.delete
   redirect to('/trains')
+end
+
+post('/stops/:id') do
+  @train = Train.find(params[:id].to_i)
+  psql_time = params[:time] + ':00'
+  city_name = params[:city_name]
+  @train.add_stop({:city_name => city_name, :time => psql_time})
+  @stops = @train.stops
+  @cities = City.all
+  erb(:train)
 end

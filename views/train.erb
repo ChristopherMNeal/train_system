@@ -3,3 +3,27 @@
 <% end %>
 
 <p><a href="/trains/<%= @train.id %>/edit">Edit/Delete station</a></p>
+
+<form method="post" action="/stops/<%= @train.id %>">
+  <label>Select a city</label>
+  <select class="form-select">
+    <% @cities.each do |city| %>
+      <option name="city_name" value="<%= city.name %>"><%= city.name %></option>
+    <% end %>
+  </select>
+<br>
+<label for="time">Stop time:</label>
+<input style="max-width:25rem;" class="form-control" type="time" id="time" name="time">
+</select>
+<button class="btn">Add stop</button>
+</form>
+
+<% if @stops.any? %>
+  <% @stops.each do |stop| %>
+    <%= stop[:city_name]%> 
+    <%= stop[:station_name]%> 
+    <%= stop[:time]%>
+  <% end %>
+<% else %>
+    No stops at this route.
+<% end %>

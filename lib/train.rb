@@ -53,7 +53,23 @@ class Train
     end
   end
 
+  def stops
+    stops = []
+    results = DB.exec("SELECT * FROM stops where train_id = #{@id};")
+    results.each do |stop|
+      city_id = stop.fetch("city_id")
+      time = stop.fetch("time")
+      stop_id = stop.fetch("id")
+      city_info = DB.exec("SELECT * FROM cities WHERE id = #{city_id};").first
+      city_name = city_info.fetch("name")
+      station_name = city_info.fetch("station_name")
+      stops.push({:id => stop_id, :time => time, :train_id => @id, :city_id => city_id, :city_name => city_name, :station_name => station_name }) 
+    end
+    stops
+  end
+
   def delete
     DB.exec("DELETE FROM trains WHERE id = #{@id};")
+    DB.exec("DELETE FROM stops WHERE train_id = #{@id};")
   end
 end

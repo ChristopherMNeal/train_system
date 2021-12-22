@@ -42,9 +42,20 @@ describe('#Train') do
       train1.save
       city1 = City.new({:name => "Portland", :station_name => "Union Station", :id => nil})
       city1.save
-      train1.add_stop({:city_name => "Portland", :time => '2021-12-21 08:00:00'})
+      train1.add_stop({:city_name => "Portland", :time => '08:00:00'})
       result = DB.exec("SELECT * FROM stops;")
-      expect(result.first).to(eq(1))
+      expect(result.first.fetch("time")).to(eq('08:00:00'))
     end
   end
+  
+  describe("#stops") do
+    it('should find stops for a train') do
+      train1 = Train.new({:name => "Amtrak Portland-Seattle", :id => nil})
+      train1.save
+      city1 = City.new({:name => "Portland", :station_name => "Union Station", :id => nil})
+      city1.save
+      train1.add_stop({:city_name => "Portland", :time => '08:00:00'})
+      expect(train1.stops[0][:train_id]).to(eq(train1.id))
+    end
+  end 
 end
