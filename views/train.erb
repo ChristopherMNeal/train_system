@@ -6,23 +6,22 @@
 
 <form method="post" action="/stops/<%= @train.id %>">
   <label>Select a city</label>
-  <select class="form-select">
+  <select class="form-select" name="city_name">
     <% @cities.each do |city| %>
       <option name="city_name" value="<%= city.name %>"><%= city.name %></option>
     <% end %>
   </select>
 <br>
-<label for="time">Stop time:</label>
-<input style="max-width:25rem;" class="form-control" type="time" id="time" name="time">
-</select>
-<button class="btn">Add stop</button>
-</form>
-
+  <label for="time">Stop time:</label>
+  <input style="max-width:25rem;" class="form-control" type="time" id="time" name="time">
+  <button class="btn">Add stop</button>
+  </form>
+<%= @city_name %>
 <% if @stops.any? %>
   <% @stops.each do |stop| %>
     <%= stop[:city_name]%> 
     <%= stop[:station_name]%> 
-    <%= stop[:time]%>
+    <%= stop[:time]%><br>
   <% end %>
 <% else %>
     No stops at this route.

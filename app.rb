@@ -102,6 +102,7 @@ post('/stops/:id') do
   @train = Train.find(params[:id].to_i)
   psql_time = params[:time] + ':00'
   city_name = params[:city_name]
+  # binding.pry
   @train.add_stop({:city_name => city_name, :time => psql_time})
   @stops = @train.stops
   @cities = City.all
