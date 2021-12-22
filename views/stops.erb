@@ -1,0 +1,19 @@
+<h3> All Stops</h3>
+
+<% if @trains.any? %>
+  <% @trains.each do |train| %>
+    <% if train.stops.any? %>
+    <h3><%= train.name %> </h3>
+    <ul>
+      <% train.stops.each do |stop| %>
+        <li>
+        <%= stop[:city_name] %>
+        <%= stop[:station_name] %>
+        <%= stop[:time] %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+  <% end %>
+<% end %>
+
