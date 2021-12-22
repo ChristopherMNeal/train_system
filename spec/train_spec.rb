@@ -1,2 +1,2 @@
 require("rspec")
-require("train_system")
+require("train")
