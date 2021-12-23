@@ -121,3 +121,26 @@ get('/stops') do
   @trains = Train.all
   erb(:stops)
 end
+
+get('/tickets') do
+  @cities = City.all
+  erb(:tickets)
+end
+
+post('/tickets') do
+  @cities = City.all
+  @city_selected = params[:city_id].to_i
+  @city = City.find(@city_selected)
+  @trains = @city.trains
+  erb(:tickets)
+end
+
+post('/tickets/:id') do
+  @city_selected = params[:id].to_i
+  @train_id = params[:train_id].to_i
+  @train = Train.find(@train_id)
+  @city = City.find(@city_selected)
+  @cities = City.all
+  @trains = Train.all
+  erb(:tickets)
+end

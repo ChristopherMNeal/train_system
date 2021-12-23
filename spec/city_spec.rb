@@ -35,4 +35,18 @@ describe('#City') do
       expect(City.find(city1.id)).to(eq(city1))
     end
   end
+
+  describe("#trains") do
+    it('should list all trains for a city') do
+      city1 = City.new({:name => "Portland", :station_name => "Union Station", :id => nil})
+      city1.save
+      train1 = Train.new({:name => "Amtrak Portland-Seattle", :id => nil})
+      train1.save
+      train2 = Train.new({:name => "Amtrak Portland-LA", :id => nil})
+      train2.save
+      train1.add_stop({:city_name => "Portland", :time => '12:00:00'})
+      train2.add_stop({:city_name => "Portland", :time => '13:00:00'})
+      expect(city1.trains).to(eq([train1, train2]))
+    end
+  end
 end

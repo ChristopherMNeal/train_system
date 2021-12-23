@@ -1,0 +1,56 @@
+<h2>Purchase a ticket</h2>
+
+
+<% if @cities.any? %>
+<form method="post" action="/tickets">
+<label>Select a city</label>
+<select class="form-select" name="city_id">
+  <% @cities.each do |city| %>
+    <option value="<%= city.id %>"><%= city.name %></option>
+  <% end %>
+</select>
+<button>Search cities</button>
+</form>
+<% else %>
+<p>There are currently no cities to display.</p>
+<% end %>
+
+
+
+<% if @trains %>
+<form method="post" action="/tickets/<%= @city.id %>">
+<label>Select a train</label>
+<select class="form-select" name="train_id">
+  <% @trains.each do |train| %>
+    <option value="<%= train.id %>"><%= train.name %></option>
+  <% end %>
+</select>
+<button>Select train</button>
+</form>
+<% else %>
+<p>There are currently no trains for this city.</p>
+<% end %>
+
+
+<% if @train %>
+<h3> <%= @train.name %></h3>
+<% end %>
+
+<h3>Your ticket has been purchased for:</h3>
+
+<% if @trains %>
+  <% @trains.each do |train| %>
+    <% if train.stops.any? %>
+    <h3><%= train.name %> </h3>
+    <ul>
+      <% train.stops.each do |stop| %>
+        <li>
+        <%= stop[:city_name] %>
+        <%= stop[:station_name] %>
+        <%= stop[:time] %>
+        </li>
+      <% end %>
+    </ul>
+    <% end %>
+  <% end %>
+<% end %>
