@@ -2,7 +2,7 @@
 
 #### By Frank Proulx, Christopher Neal, Morgan Waites
  
-#### This is an app for a site that allows the user to add albums, artists, and songs for imaginary record store site.
+#### This is an app for a site that allows the user to add albums, artists, and songs for imaginary train site.
 
 ## Technologies Used
 
@@ -25,13 +25,14 @@
 
 * Create and/or navigate to the directory you would like to contain this project on your computer.
 * Initialize a git repository by typing **git init** in the terminal.
-* Type **git clone https://github.com/Frank-Proulx/w9_word_definer** to clone the repository to your local machine.
+* Type **git clone https://github.com/ChristopherMNeal/the_word_definer** to clone the repository to your local machine.
 * Navigate into project directory by typing cd w9_word_definer  
 * Type bundle install in the terminal to populate gems
 * To create a database using the database backup included in this project, type in your terminal: 
-      createdb [DATABASE NAME] 
-      psql [DATABASE_NAME] < record_store.sql
-      createdb -T [DATABASE_NAME] [TEST_DATABASE_NAME]
+      rake dump\["train_system"\]
+      <!-- createdb [DATABASE NAME] 
+      psql [DATABASE_NAME] < database_backup.sql
+      createdb -T [DATABASE_NAME] [TEST_DATABASE_NAME] -->
 * Type rspec in the terminal to confirm passing of all tests  
 * Type ruby app.rb to run the program with Sinatra
 * Open browswer and enter the url "http://localhost:4567/" unless otherwise prompted in the terminal
@@ -49,4 +50,4 @@ If you have any issues, questions, ideas or concerns, please reach out to me at 
 
 Copyright (c) 2021 Frank Proulx, Christopher Neal, Morgan Waites
 
-![image_of_database_schema](./record_store_schema.png)
+![image_of_database_schema](./public/train_system_schema.png)
