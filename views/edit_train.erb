@@ -1,3 +1,18 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Train System Deluxe</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/">Home</a></li>
+      <li class="active"><a href="/trains">Trains</a></li>
+      <li><a href="/cities">Cities</a></li>
+      <li><a href="/stops">Stops</a></li>
+      <li><a href="/tickets">Purchase Tickets</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
 <h3>Edit <%= @train.name %></h3>
 
 <form method="post" action="/trains/<%= @train.id %>">
@@ -11,3 +26,4 @@
 <input name="_method" type="hidden" value="delete">
 <button class="btn">Delete</button>
 </form>
+</div>
