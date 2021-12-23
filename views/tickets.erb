@@ -1,12 +1,11 @@
 <h2>Purchase a ticket</h2>
 
-
 <% if @cities.any? %>
 <form method="post" action="/tickets">
 <label>Select a city</label>
 <select class="form-select" name="city_id">
+  <option selected>Select a City</option>
   <% @cities.each do |city| %>
-    
     <option value="<%= city.id %>"><%= city.name %></option>
   <% end %>
 </select>
@@ -19,6 +18,7 @@
 
 
 <% if @trains %>
+<% if @trains.any? %>
 <form method="post" action="/tickets/<%= @city.id %>">
 <label>Select a train</label>
 <select class="form-select" name="train_id">
@@ -31,15 +31,14 @@
 <% else %>
 <p>There are currently no trains for this city.</p>
 <% end %>
-
+<% end %>
 
 <% if @train %>
-<h3> <%= @train.name %></h3>
+<h3>You've purchased a ticket for:</h3>
 <% end %>
 
 
 <% if @trains %>
-<h3>Your ticket has been purchased for:</h3>
   <% @trains.each do |train| %>
     <% if train.stops.any? %>
     <h3><%= train.name %> </h3>
